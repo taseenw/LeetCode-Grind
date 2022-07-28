@@ -1,13 +1,18 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        boolean isPalindrome = true;
-        String xS = String.valueOf(x);
-        int parse = xS.length()/2;
-        for(int y=0;y<parse;y++){
-            if(xS.charAt(y) != xS.charAt(xS.length()-1-y)){
-                return false;
-            }
+        int remainder;
+        int rev=0;
+        int org=x;
+        while(x>0){
+            remainder=x%10;
+            rev=rev*10+remainder;
+            x=x/10;
         }
-        return isPalindrome;
+        if(rev==org){
+            return true;
+        }else{
+            return false;
+        }
     }
+    
 }
