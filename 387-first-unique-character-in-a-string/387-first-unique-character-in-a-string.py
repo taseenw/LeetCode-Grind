@@ -4,12 +4,13 @@ class Solution:
         
         for x in range(len(s)):
             if s[x] in letters:
-                letters[s[x]]+=1
+                letters[s[x]]=False
             else:
-                letters[s[x]]=1
+                letters[s[x]]=True
+
         
         for x in range(len(s)):
-            if letters[s[x]] == 1:
+            if letters[s[x]]:
                 return x
         
         return -1
