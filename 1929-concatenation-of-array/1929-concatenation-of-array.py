@@ -1,15 +1,14 @@
 class Solution(object):
     def getConcatenation(self, nums):
         n=len(nums)
+        hmap={}
         ans=[]
-        it=True
-        x=0
-        while x < n:
-            ans.append(nums[x])
-            x+=1
-            if x == n and it:
-                it=False
-                x=0
-                
+        
+        for x in range(n):
+            hmap[x]=nums[x]
+            ans.append(hmap[x])
+            
+        for x in range(n):
+            ans.append(hmap[x])
         return ans
         
