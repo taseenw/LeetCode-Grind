@@ -1,0 +1,25 @@
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # Edge case: No houses to rob
+        if not nums:
+            return 0
+        # Edge case: Only one house to rob
+        elif len(nums) == 1:
+            return nums[0]
+
+        # Helper function to rob houses in a linear fashion (no circular connection)
+        def rob_linear(nums):
+            rob1 = rob2 = 0  # rob1: max robbed value excluding previous house, rob2: max including previous house
+            for house in nums:
+                # Calculate maximum we can rob by either skipping or robbing the current house
+                temp = max(house + rob1, rob2)
+                rob1 = rob2  # Update rob1 to be rob2 from the previous iteration
+                rob2 = temp  # rob2 holds the current max
+            return rob2  # Return the max value we can rob
+
+        # Rob the houses excluding the first one or the last one, handle both scenarios
+        return max(rob_linear(nums[1:]), rob_linear(nums[:-1]))  # Take the maximum of two cases
